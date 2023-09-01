@@ -1,0 +1,59 @@
+---
+author: "Lethukuthula Nkambule"
+title: "Homework 0"
+format: html
+editor: visual
+---
+
+### 1. Find solution(s) given values of a, b, and c
+
+-  I define the variables and assign values to them as follows: `a=1`, `b=3`, and `c=2`
+
+-   If `a!=0`, I define the discriminant as: $D = b^2 - 4*a*c$. Then, based on the following 3 conditions, I evaluate how many solutions there are using `if`, `else if`, `else` statements:
+
+    -   `D > 0`, there are 2 real roots/solutions.
+    -   `D == 0`, there is 1 real root/solution.
+    -   `D < 0`, there are 0 real roots/solutions.
+
+```{r}
+#| echo: false
+
+a <- 1
+b <- 3
+c <- 2
+
+# make sure a != 0
+if (a==0){
+  cat(b, "x + ", c, " = 0\n")
+  stop("a = 0, making the equation linear, not quadratic. Exiting")
+}
+      
+D <- b^2 - 4*a*c # discriminant
+
+if (D > 0) {
+  cat(paste0("There are two real solutions for a=", a, ", b=", b, ", c=", c, ":"))
+  x1 <- (-(b) - sqrt(D)) / 2*a
+  x2 <- (-(b) + sqrt(D)) / 2*a
+  cat(paste0("\nx = ", x1, "\nx = ", x2))
+} else if (D == 0){
+  cat(paste0("There is one real solution for a=", a, ", b=", b, ", c=", c, ":"))
+  # x = (-b+0)/2a or (-b-0)/2a. Adding/subtracting 0 does not change num, so x = -b/2a
+  x <- (-b) / (2*a)
+  cat(paste0("\nx = ", x))
+} else {
+  cat(paste0("There are 0 real solutions for a=", a, ", b=", b, ", c=", c))
+}
+
+```
+
+### 2. Graph of *f(x)* vs. *x* for *x* $\in$ (-5, 5)
+
+-   I used the `seq` function to generate 300 x-values ranging from -5 to 5, then graphed *f* as a function of *x* at the different x-values using the quadratic equation from above.
+
+```{r}
+#| echo: false
+
+x <- seq(-5, 5, length = 300)
+plot(x, a*x^2 + b*x + c, type = "l")
+abline(h = 0, lty = 2)
+```
